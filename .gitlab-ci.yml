@@ -1,0 +1,25 @@
+image: node:latest
+
+before_script:
+  - npm i
+
+cache:
+  paths:
+    - node_modules/
+
+webpack:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - mv dist/* public
+  artifacts:
+    paths:
+      - public
