@@ -20,7 +20,7 @@ export default {
 
   output: {
     library: 'Otoha',
-    publicPath: '/',
+    publicPath: '/otoha/',
     filename: isDev ?
               './js/[name].[hash].js' :
               './js/[name].[hash].min.js'
