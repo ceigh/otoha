@@ -1,3 +1,3 @@
 # Otoha
 
-Parse vk database by keywords.
+Parse [VK]('https://vk.com' 'VK') database by keywords.

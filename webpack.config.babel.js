@@ -3,6 +3,7 @@ import CopyWebpackPlugin    from 'copy-webpack-plugin';
 import HtmlWebpackPlugin    from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import UglifyJsPlugin       from 'uglifyjs-webpack-plugin';
+import webpack              from 'webpack';
 
 const WEBPACK_MODE = process.env.WEBPACK_MODE || 'development';
 const isDev = 'development' === WEBPACK_MODE;
@@ -20,7 +21,7 @@ export default {
 
   output: {
     library: 'Otoha',
-    publicPath: '/otoha/',
+    publicPath: isDev ? '/' : '/otoha/',
     filename: isDev ?
               './js/[name].[hash].js' :
               './js/[name].[hash].min.js'
@@ -28,6 +29,10 @@ export default {
 
   plugins: [
     new CleanWebpackPlugin(),
+
+    new webpack.DefinePlugin({
+      MODE: JSON.stringify(WEBPACK_MODE)
+    }),
 
     new MiniCssExtractPlugin({
       filename: isDev ?
@@ -43,7 +48,7 @@ export default {
       {
         from: './img',
         to: './img'
-      },
+      }
     ])
   ],
 
