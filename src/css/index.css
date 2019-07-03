@@ -55,3 +55,8 @@ body {
 noscript {
     color: #dc143c;
 }
+
+#search-block p {
+    display: none;
+    color: #dc143c;
+}
