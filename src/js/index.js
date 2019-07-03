@@ -4,7 +4,7 @@ import vk     from './vk';
 
 // noinspection JSUnresolvedVariable
 const baseUrl = MODE === 'production' ?
-      'https://ceigh.gitlab.io/otoha' : 'http://localhost:9090';
+                'https://ceigh.gitlab.io/otoha' : 'http://localhost:9090';
 const authUrl = 'https://oauth.vk.com/authorize?client_id=704' +
   `1394&display=page&scope=offline&redirect_uri=${baseUrl}&response_type=token`;
 const url = location.href;
@@ -31,20 +31,24 @@ if ('access_token' in urlData) {
   cookie.del('query');
 }
 
-input.onchange = () => {
+input.onkeydown = e => {
   const query = input.value;
-
   if (!query) return;
-  if (storedQuery) cookie.del('query');
 
-  const token = cookie.get('token');
+  if (e.key === 'Escape') {
+    input.value = '';
+  } else if (e.key === 'Enter') {
+    if (storedQuery) cookie.del('query');
 
-  if (token) {
-    vk.init(token);
-    vk.groups.search(query);
-  } else {
-    cookie.set('query', query);
-    location.replace(authUrl);
+    const token = cookie.get('token');
+    if (token) {
+      vk.init(token);
+      vk.groups.search(query);
+      input.value = '';
+    } else {
+      cookie.set('query', query);
+      location.replace(authUrl);
+    }
   }
 };
 
