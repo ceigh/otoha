@@ -3,7 +3,9 @@ import cookie from './cookie';
 import vk     from './vk';
 
 // If change, don't forget to also change on vk.com/dev
-const baseUrl = 'http://localhost:9090';
+const WEBPACK_MODE = process.env.WEBPACK_MODE || 'development';
+const baseUrl = WEBPACK_MODE === 'development' ?
+                'http://localhost:9090' : 'https://ceigh.gitlab.io/otoha';
 const authUrl = 'https://oauth.vk.com/authorize?client_id=7041394&display=' +
   `page&scope=offline&redirect_uri=${baseUrl}&response_type=token`;
 const url = location.href;
