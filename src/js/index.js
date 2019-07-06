@@ -14,7 +14,7 @@ const AUTH_PAYLOAD = {
   display: 'page',
   scope: 'offline',
   response_type: 'token',
-  client_id: 7041394,
+  client_id: 7046803,
   redirect_uri: BASE_URL
 };
 const AUTH_URL = `${AUTH_ENDPOINT}${formatParams(AUTH_PAYLOAD)}`;

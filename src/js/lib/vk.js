@@ -2,6 +2,8 @@ import {formatParams} from './tools';
 
 const API_URL = 'https://api.vk.com/method/';
 const API_VERSION = 5.87;
+const API_APP_TOKEN = '024c7416024c7416024c74' +
+  '16f60227f2850024c024c74165f6c944afa65e480428d44d8';
 let userAuthToken;
 
 const init = authToken => {
@@ -16,7 +18,7 @@ const searchGroups = query => {
     q: query,
 
     access_token: userAuthToken,
-    v: API_VERSION,
+    v: API_VERSION
   };
   return `${endpoint}${formatParams(payload)}`;
 };
@@ -29,8 +31,8 @@ const getGroupMembers = (gid, offset = 0) => {
     group_id: gid,
     offset,
 
-    access_token: userAuthToken,
-    v: API_VERSION,
+    access_token: API_APP_TOKEN,
+    v: API_VERSION
   };
   return endpoint + formatParams(payload);
 };

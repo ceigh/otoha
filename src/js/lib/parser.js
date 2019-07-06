@@ -2,6 +2,8 @@ import cookie                   from './cookie';
 import {addScript, createError} from './tools';
 import vk                       from './vk';
 
+let goods;
+
 window.parser = {
   get: {
     groups: data => {
@@ -12,10 +14,17 @@ window.parser = {
         return;
       }
 
-      const items = Array.from(data.response.items);
-      console.log(items);
-      addScript(vk.groups.getMembers(items[0].id) +
-        '&callback=parser.get.members');
+      goods = [];
+
+      const gids = Array.from(data.response.items)
+        .map((item) => item.id)
+        .sort(() => Math.random())
+        .slice(0, 400);
+
+      gids.forEach(gid => {
+        addScript(vk.groups.getMembers(gid) +
+          '&callback=parser.get.members');
+      });
     },
 
     members: data => {
@@ -26,7 +35,24 @@ window.parser = {
         return;
       }
 
-      console.log(data.response);
+      const members = Array.from(data.response.items);
+
+      members.forEach(item => {
+        if (( 'deactivated' in item ) ||
+           !( 'city' in item ) ||
+           !( 'mobile_phone' in item )) return;
+
+        const city  = item.city.title,
+              phone = item.mobile_phone;
+
+        // TODO: number valid check
+        // noinspection JSUnresolvedVariable
+        goods.push([item.first_name, item.last_name, city, phone]);
+      });
+
+      // csv_write(goods, path)
+      // delete_duplicates(path)
+      console.log(goods);
     }
   }
 };
