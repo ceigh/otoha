@@ -1,10 +1,3 @@
-const createError = message => {
-  const errorP = document.querySelector('#search-block p');
-  errorP.innerText = message;
-  errorP.setAttribute('title', message);
-  errorP.style.display = 'initial';
-};
-
 const addScript = src => {
   const el = document.createElement('script');
   el.src = src;
@@ -38,7 +31,6 @@ const selectOnClick = el => {
 };
 
 export {
-  createError,
   addScript,
   formatParams,
   getJsonFromUrl,
