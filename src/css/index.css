@@ -25,6 +25,11 @@ body {
     text-align: center;
 }
 
+#search-block h1 {
+    margin-right: 0.5em;
+    margin-left:  0.5em;
+}
+
 #search-block input {
     height:         2rem;
     width:          70%;
@@ -58,5 +63,5 @@ noscript {
 
 #search-block p {
     display: none;
-    color: #dc143c;
+    color:   #dc143c;
 }

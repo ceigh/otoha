@@ -1,3 +1,4 @@
+import circle      from './circle';
 import cookie      from './cookie';
 import Csv         from './csv';
 import error       from './error';
@@ -40,6 +41,7 @@ window.parser = {
     members: data => {
       iteration++;
       if (maxIteration === iteration) {
+        circle.hide();
         if (!goods.length) {
           error.create('No data');
           return;
@@ -52,6 +54,7 @@ window.parser = {
       }
 
       if ('error' in data) {
+        circle.hide();
         // noinspection JSUnresolvedVariable
         error.create(data.error.error_msg);
         cookie.del('token');
@@ -83,10 +86,9 @@ window.parser = {
 
 const parser = {
   start: (token, query) => {
+    circle.show();
     error.remove();
-
     queryName = query;
-
     vk.init(token);
     addScript(vk.groups.search(query) +
               '&callback=parser.get.groups');

@@ -1,4 +1,5 @@
 import '../css/index.css';
+import '../css/lib/circle.css';
 import cookie                                        from './lib/cookie';
 import parser                                        from './lib/parser';
 import {formatParams, getJsonFromUrl, selectOnClick} from './lib/tools';

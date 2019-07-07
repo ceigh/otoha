@@ -1,0 +1,29 @@
+.loader {
+    position:   relative;
+    /*animation: hue 4s linear infinite;*/
+    margin-top: 10vh;
+}
+
+.loader circle {
+    stroke-dasharray: 10, 84;
+    animation:        stroke 1.5s ease infinite;
+    opacity:          0;
+    transition: opacity .3s;
+}
+
+@keyframes stroke {
+    50% {
+        stroke-dasharray:  84, 10;
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -94;
+    }
+}
+
+/*@keyframes hue {*/
+/*    100% {*/
+/*        filter: hue-rotate(360deg);*/
+/*    }*/
+/*}*/
