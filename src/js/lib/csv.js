@@ -19,6 +19,7 @@ class Csv {
     link.setAttribute('download', `${this.name}.csv`);
     document.body.appendChild(link);
     link.click();
+    link.remove();
   }
 }
 

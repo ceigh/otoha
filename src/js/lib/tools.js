@@ -2,6 +2,7 @@ const addScript = src => {
   const el = document.createElement('script');
   el.src = src;
   document.head.appendChild(el);
+  el.onload = () => el.remove();
 };
 
 const formatParams = params => {
